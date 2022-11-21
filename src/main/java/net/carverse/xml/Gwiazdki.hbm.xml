@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 lis 2022, 14:49:27 by Hibernate Tools 6.1.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="carverse" name="net.carverse.xml.Gwiazdki" optimistic-lock="none" table="gwiazdki">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="net.carverse.xml.Samochody" fetch="select" name="samochody">
+            <column name="IDsamochodu" not-null="true"/>
+        </many-to-one>
+        <property name="sredniaGwiazdek" type="long">
+            <column name="sredniaGwiazdek" not-null="true" precision="10" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>

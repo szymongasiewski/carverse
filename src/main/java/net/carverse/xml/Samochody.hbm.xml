@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 lis 2022, 14:49:27 by Hibernate Tools 6.1.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="carverse" name="net.carverse.xml.Samochody" optimistic-lock="none" table="samochody">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="net.carverse.xml.Lokacje" fetch="select" name="lokacje">
+            <column name="IDlokacji" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="net.carverse.xml.Statussamochodu" fetch="select" name="statussamochodu">
+            <column length="3" name="kodStatusuSamochodu" not-null="true"/>
+        </many-to-one>
+        <property name="rejestracja" type="string">
+            <column length="20" name="rejestracja" not-null="true" unique="true"/>
+        </property>
+        <property name="marka" type="string">
+            <column length="50" name="marka" not-null="true"/>
+        </property>
+        <property name="model" type="string">
+            <column length="50" name="model" not-null="true"/>
+        </property>
+        <property name="dziennyKoszt" type="big_decimal">
+            <column name="dziennyKoszt" not-null="true" precision="15" scale="2"/>
+        </property>
+        <property name="najlepszaOferta" type="byte">
+            <column name="najlepszaOferta" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="komentarzes" table="komentarze">
+            <key>
+                <column name="IDsamochodu" not-null="true"/>
+            </key>
+            <one-to-many class="net.carverse.xml.Komentarze"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="parametrysamochodus" table="parametrysamochodu">
+            <key>
+                <column name="IDsamochodu" not-null="true" unique="true"/>
+            </key>
+            <one-to-many class="net.carverse.xml.Parametrysamochodu"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="rezerwacjes" table="rezerwacje">
+            <key>
+                <column name="IDsamochodu" not-null="true"/>
+            </key>
+            <one-to-many class="net.carverse.xml.Rezerwacje"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="gwiazdkis" table="gwiazdki">
+            <key>
+                <column name="IDsamochodu" not-null="true"/>
+            </key>
+            <one-to-many class="net.carverse.xml.Gwiazdki"/>
+        </set>
+        <set fetch="select" inverse="false" lazy="true" name="wyposazenies" table="wyposazeniesamochodu">
+            <key>
+                <column name="IDsamochodu" not-null="true"/>
+            </key>
+            <many-to-many entity-name="net.carverse.xml.Wyposazenie">
+                <column length="3" name="IDwyposazenia" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

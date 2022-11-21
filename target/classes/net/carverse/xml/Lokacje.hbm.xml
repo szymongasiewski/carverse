@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 lis 2022, 14:49:27 by Hibernate Tools 6.1.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="carverse" name="net.carverse.xml.Lokacje" optimistic-lock="none" table="lokacje">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="kraj" type="string">
+            <column length="50" name="kraj" not-null="true"/>
+        </property>
+        <property name="miasto" type="string">
+            <column length="100" name="miasto" not-null="true"/>
+        </property>
+        <property name="adres" type="string">
+            <column length="100" name="adres" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="255" name="email" not-null="true"/>
+        </property>
+        <property name="telefon" type="string">
+            <column length="20" name="telefon" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="samochodies" table="samochody">
+            <key>
+                <column name="IDlokacji" not-null="true"/>
+            </key>
+            <one-to-many class="net.carverse.xml.Samochody"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="rezerwacjes" table="rezerwacje">
+            <key>
+                <column name="IDlokacji" not-null="true"/>
+            </key>
+            <one-to-many class="net.carverse.xml.Rezerwacje"/>
+        </set>
+    </class>
+</hibernate-mapping>

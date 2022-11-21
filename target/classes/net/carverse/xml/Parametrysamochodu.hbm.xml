@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 lis 2022, 14:49:27 by Hibernate Tools 6.1.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="carverse" name="net.carverse.xml.Parametrysamochodu" optimistic-lock="none" table="parametrysamochodu">
+        <composite-id class="net.carverse.xml.ParametrysamochoduId" name="id">
+            <key-property name="idsamochodu" type="int">
+                <column name="IDsamochodu"/>
+            </key-property>
+            <key-property name="kolor" type="string">
+                <column length="30" name="kolor"/>
+            </key-property>
+            <key-property name="liczbaDrzwi" type="int">
+                <column name="liczbaDrzwi"/>
+            </key-property>
+            <key-property name="liczbaSiedzen" type="int">
+                <column name="liczbaSiedzen"/>
+            </key-property>
+            <key-property name="metaliczny" type="byte">
+                <column name="metaliczny"/>
+            </key-property>
+            <key-property name="moc" type="int">
+                <column name="moc"/>
+            </key-property>
+            <key-property name="napedNaPrzednieKola" type="byte">
+                <column name="napedNaPrzednieKola"/>
+            </key-property>
+            <key-property name="nazwaZdjecia" type="string">
+                <column length="70" name="nazwaZdjecia"/>
+            </key-property>
+            <key-property name="opis" type="string">
+                <column length="100" name="opis"/>
+            </key-property>
+            <key-property name="rodzajPaliwa" type="string">
+                <column length="30" name="rodzajPaliwa"/>
+            </key-property>
+            <key-property name="rokProdukcji" type="int">
+                <column name="rokProdukcji"/>
+            </key-property>
+            <key-property name="skrzyniaBiegow" type="string">
+                <column length="30" name="skrzyniaBiegow"/>
+            </key-property>
+            <key-property name="typNadwozia" type="string">
+                <column length="30" name="typNadwozia"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="net.carverse.xml.Samochody" fetch="select" insert="false" name="samochody" update="false">
+            <column name="IDsamochodu" not-null="true" unique="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
